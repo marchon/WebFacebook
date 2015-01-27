@@ -2,5 +2,6 @@
 <resources>
 
     <string name="app_name">Facebook</string>
+    <string name="offline_image">Offline Image</string>
 
 </resources>
