@@ -28,7 +28,6 @@ public class Index extends Activity {
             	if (!isNetworkAvailable()) {
                 	setContentView(R.layout.activity_offline);
                 } else {
-                	requestWindowFeature(Window.FEATURE_NO_TITLE);
                 	setContentView(R.layout.activity_index);
                 	mWebView = (WebView) findViewById(R.id.webview);
                 	mWebView.getSettings().setJavaScriptEnabled(true);
