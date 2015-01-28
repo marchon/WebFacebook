@@ -17,6 +17,7 @@ import android.widget.ImageView;
 public class Index extends Activity {
 
   private ImageButton refresh_button;
+  private ImageButton refresh_offline_button;
   private ImageView splash_image;
   private String facebook_url = "https://m.facebook.com/";
   private WebView facebook_webview;
@@ -28,6 +29,15 @@ public class Index extends Activity {
     setContentView(R.layout.activity_index);
     if (!isNetworkAvailable()) {
    	  setContentView(R.layout.activity_offline);
+      refresh_offline_button = (ImageButton) findViewById(R.id.refresh_offline_button);
+      refresh_offline_button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          Intent intent = getIntent();
+          finish();
+          startActivity(intent);
+        }
+      });
     } else {
       splash_image = (ImageView) findViewById(R.id.splash_image);
       refresh_button = (ImageButton) findViewById(R.id.refresh_button);
