@@ -13,8 +13,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class Index extends Activity {
+
+  int layout = 0;
+  int retry = 0;
 
   private ImageButton refresh_button;
   private ImageButton refresh_offline_button;
@@ -37,6 +41,11 @@ public class Index extends Activity {
             Intent intent = getIntent();
             finish();
             startActivity(intent);
+          } else if (retry == 2) {
+            Toast.makeText(getApplicationContext(), "Don't you read? You're offline, dude.", Toast.LENGTH_SHORT).show();
+            retry = 0;
+          } else {
+            retry += 1;
           }
         }
       });
@@ -65,6 +74,7 @@ public class Index extends Activity {
           splash_image.setVisibility(View.GONE);
         }
       });
+      layout = 1;
       facebook_webview.loadUrl(facebook_url);
       refresh_button.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -83,11 +93,15 @@ public class Index extends Activity {
 
   @Override
   public void onBackPressed() {
-    if (facebook_webview.canGoBack()) {
-      facebook_webview.goBack();
-    } else {
-      facebook_webview.loadUrl(facebook_url);
-    }
+	if (layout == 1){
+	  if (facebook_webview.canGoBack()) {
+        facebook_webview.goBack();
+      } else {
+        facebook_webview.loadUrl(facebook_url);
+      }
+	} else {
+      super.onBackPressed();
+	}
   }
 
 }
