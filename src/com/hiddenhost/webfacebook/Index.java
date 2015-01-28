@@ -34,7 +34,7 @@ public class Index extends Activity {
                 	mWebView.getSettings().setLoadsImagesAutomatically(true);
                 	mWebView.setWebViewClient(new WebViewClient() {
                 		public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                			if (url != null && (url.startsWith("http://") || url.startsWith("https://"))) {
+                			if (url != null && !url.startsWith("https://m.facebook")) {
                 				view.getContext().startActivity(
                 				new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                 				return true;
