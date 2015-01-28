@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class Index extends Activity {
 
+	private ImageButton RefreshButton;
 	private ImageView SplashImage;
 	private String url = "https://m.facebook.com/";
 	private WebView mWebView;
@@ -29,6 +31,7 @@ public class Index extends Activity {
         } else {
         	setContentView(R.layout.activity_index);
         	SplashImage = (ImageView) findViewById(R.id.splash_image);
+        	RefreshButton = (ImageButton) findViewById(R.id.refresh_button);
         	mWebView = (WebView) findViewById(R.id.webview);
         	mWebView.getSettings().setJavaScriptEnabled(true);
         	mWebView.getSettings().setLoadsImagesAutomatically(true);
@@ -44,11 +47,19 @@ public class Index extends Activity {
         		}
         		public void onPageFinished(WebView view, String url) {
         			mWebView.setVisibility(View.VISIBLE);
+        			RefreshButton.setVisibility(View.VISIBLE);
         			SplashImage.setVisibility(View.GONE);
         		}
   			});
         	mWebView.loadUrl(url);
         }
+
+    	RefreshButton.setOnClickListener(new View.OnClickListener() {
+    	    @Override
+    	    public void onClick(View view) {
+    	    	mWebView.loadUrl(url);
+    	    }
+    	});
     }
 
     private boolean isNetworkAvailable() {
