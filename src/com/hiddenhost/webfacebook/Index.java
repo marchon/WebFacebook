@@ -29,7 +29,6 @@ public class Index extends Activity {
     if (!isNetworkAvailable()) {
    	  setContentView(R.layout.activity_offline);
     } else {
-      setContentView(R.layout.activity_index);
       splash_image = (ImageView) findViewById(R.id.splash_image);
       refresh_button = (ImageButton) findViewById(R.id.refresh_button);
       facebook_webview = (WebView) findViewById(R.id.webview);
@@ -55,20 +54,19 @@ public class Index extends Activity {
         }
       });
       facebook_webview.loadUrl(facebook_url);
+      refresh_button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+          facebook_webview.loadUrl(facebook_url);
+        }
+      });
     }
-
-    refresh_button.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        facebook_webview.loadUrl(facebook_url);
-      }
-    });
   }
 
   private boolean isNetworkAvailable() {
     ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
     NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-    return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
   }
 
   @Override
