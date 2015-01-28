@@ -16,10 +16,10 @@ import android.widget.ImageView;
 
 public class Index extends Activity {
 
-  private ImageButton RefreshButton;
-  private ImageView SplashImage;
-  private String url = "https://m.facebook.com/";
-  private WebView mWebView;
+  private ImageButton refresh_button;
+  private ImageView splash_image;
+  private String facebook_url = "https://m.facebook.com/";
+  private WebView facebook_webview;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,12 @@ public class Index extends Activity {
    	  setContentView(R.layout.activity_offline);
     } else {
       setContentView(R.layout.activity_index);
-      SplashImage = (ImageView) findViewById(R.id.splash_image);
-      RefreshButton = (ImageButton) findViewById(R.id.refresh_button);
-      mWebView = (WebView) findViewById(R.id.webview);
-      mWebView.getSettings().setJavaScriptEnabled(true);
-      mWebView.getSettings().setLoadsImagesAutomatically(true);
-      mWebView.setWebViewClient(new WebViewClient() {
+      splash_image = (ImageView) findViewById(R.id.splash_image);
+      refresh_button = (ImageButton) findViewById(R.id.refresh_button);
+      facebook_webview = (WebView) findViewById(R.id.webview);
+      facebook_webview.getSettings().setJavaScriptEnabled(true);
+      facebook_webview.getSettings().setLoadsImagesAutomatically(true);
+      facebook_webview.setWebViewClient(new WebViewClient() {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
           if (url != null && !url.startsWith("https://m.facebook")) {
             view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
@@ -45,18 +45,18 @@ public class Index extends Activity {
           }
         }
         public void onPageFinished(WebView view, String url) {
-          mWebView.setVisibility(View.VISIBLE);
-          RefreshButton.setVisibility(View.VISIBLE);
-          SplashImage.setVisibility(View.GONE);
+          facebook_webview.setVisibility(View.VISIBLE);
+          refresh_button.setVisibility(View.VISIBLE);
+          splash_image.setVisibility(View.GONE);
         }
       });
-      mWebView.loadUrl(url);
+      facebook_webview.loadUrl(facebook_url);
     }
 
-    RefreshButton.setOnClickListener(new View.OnClickListener() {
+    refresh_button.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        mWebView.loadUrl(url);
+        facebook_webview.loadUrl(facebook_url);
       }
     });
   }
@@ -69,8 +69,8 @@ public class Index extends Activity {
 
   @Override
   public void onBackPressed() {
-    if (mWebView.canGoBack()) {
-      mWebView.goBack();
+    if (facebook_webview.canGoBack()) {
+      facebook_webview.goBack();
     } else {
       super.onBackPressed();
     }
