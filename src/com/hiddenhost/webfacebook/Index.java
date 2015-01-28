@@ -33,9 +33,11 @@ public class Index extends Activity {
       refresh_offline_button.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-          Intent intent = getIntent();
-          finish();
-          startActivity(intent);
+          if (isNetworkAvailable()) {
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+          }
         }
       });
     } else {
@@ -84,7 +86,7 @@ public class Index extends Activity {
     if (facebook_webview.canGoBack()) {
       facebook_webview.goBack();
     } else {
-      super.onBackPressed();
+      facebook_webview.loadUrl(facebook_url);
     }
   }
 
