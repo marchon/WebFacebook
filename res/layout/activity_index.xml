@@ -1,14 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="#3B5998"
+    android:gravity="center|top"
+    android:orientation="vertical" >
 
 	<WebView
 	    android:id="@+id/webview"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent">
+	    android:layout_height="fill_parent"
+	    android:visibility="invisible" >
+
 	</WebView>
 
-</LinearLayout>
+	<ImageView
+	    android:contentDescription="@string/splash_image"
+	    android:id="@+id/splash_image"
+	    android:layout_width="128dp"
+	    android:layout_height="34dp"
+	    android:layout_centerHorizontal="true"
+	    android:layout_centerVertical="true"
+	    android:src="@drawable/splash" />
+
+</RelativeLayout>

@@ -3,5 +3,6 @@
 
     <string name="app_name">Facebook</string>
     <string name="offline_image">Offline Image</string>
+    <string name="splash_image">Splash Image</string>
 
 </resources>
