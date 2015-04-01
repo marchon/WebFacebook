@@ -59,8 +59,10 @@ public class Index extends Activity {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
           if (url != null &&
              !url.startsWith("https://m.facebook") &&
+             !url.startsWith("https://h.facebook") &&
              !url.startsWith("https://facebook") &&
              !url.startsWith("http://m.facebook") &&
+             !url.startsWith("http://h.facebook") &&
              !url.startsWith("http://facebook")) {
             view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             return true;
